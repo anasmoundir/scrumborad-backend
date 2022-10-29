@@ -1,27 +1,29 @@
 <?php
-    include('scripts.php');
+include('scripts.php');
 ?>
 
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+
 <head>
 	<meta charset="utf-8" />
 	<title>YouCode | Scrum Board</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
-	
+
 	<!-- ================== BEGIN core-css ================== -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 	<link href="assets/css/vendor.min.css" rel="stylesheet" />
 	<link href="assets/css/default/app.min.css" rel="stylesheet" />
 	<!-- ================== END core-css ================== -->
 </head>
+
 <body>
 	<!-- BEGIN #loader -->
-	<div id="loader" class="app-loader">
+	<!-- <div id="loader" class="app-loader">
 		<span class="spinner"></span>
-	</div>
+	</div> -->
 	<!-- END #loader -->
 
 	<!-- BEGIN #app -->
@@ -110,12 +112,12 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="navbar-item navbar-user dropdown">
 					<a href="#" class="navbar-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
-						<img src="assets/img/user/user-13.jpg" alt="" /> 
+						<img src="assets/img/user/user-13.jpg" alt="" />
 						<span>
-							<span class="d-none d-md-inline">Jilali Smith</span>
+							<span class="d-none d-md-inline">sam Smith</span>
 							<b class="caret"></b>
 						</span>
 					</a>
@@ -123,7 +125,7 @@
 						<a href="javascript:;" class="dropdown-item">Edit Profile</a>
 						<a href="javascript:;" class="dropdown-item d-flex align-items-center">
 							Inbox
-							<span class="badge bg-danger rounded-pill ms-auto pb-4px">2</span> 
+							<span class="badge bg-danger rounded-pill ms-auto pb-4px">2</span>
 						</a>
 						<a href="javascript:;" class="dropdown-item">Calendar</a>
 						<a href="javascript:;" class="dropdown-item">Setting</a>
@@ -135,7 +137,7 @@
 			<!-- END header-nav -->
 		</div>
 		<!-- END #header -->
-	
+
 		<!-- BEGIN #sidebar -->
 		<div id="sidebar" class="app-sidebar">
 			<!-- BEGIN scrollbar -->
@@ -181,7 +183,7 @@
 						<div class="menu-divider m-0"></div>
 					</div>
 					<div class="menu-header">Navigation</div>
-					
+
 					<div class="menu-item">
 						<a href="index.html" class="menu-link">
 							<div class="menu-icon">
@@ -204,7 +206,7 @@
 		<div class="app-sidebar-bg"></div>
 		<div class="app-sidebar-mobile-backdrop"><a href="#" data-dismiss="app-sidebar-mobile" class="stretched-link"></a></div>
 		<!-- END #sidebar -->
-		
+
 		<!-- BEGIN #content -->
 		<div id="content" class="app-content" style="min-height: 100vh; background: url(assets/img/cover/cover-scrum-board.png) no-repeat fixed; background-size: 360px; background-position: right bottom;">
 			<div class="d-flex align-items-center mb-3">
@@ -215,16 +217,16 @@
 					</ol>
 					<!-- BEGIN page-header -->
 					<h1 class="page-header mb-0">
-						Scrum Board 
+						Scrum Board
 					</h1>
 					<!-- END page-header -->
 				</div>
-				
+
 				<div class="ms-auto">
-				<a href="#modal-task" data-bs-toggle="modal" class="btn btn-success btn-rounded px-4 rounded-pill"><i class="fa fa-plus fa-lg me-2 ms-n2 text-success-900"></i> Add Task</a>
+					<a href="#modal-task" data-bs-toggle="modal" class="btn btn-success btn-rounded px-4 rounded-pill"><i class="fa fa-plus fa-lg me-2 ms-n2 text-success-900"></i> Add Task</a>
 				</div>
 			</div>
-			
+
 			<div class="mb-3 d-md-flex fw-bold">
 				<div class="dropdown-toggle">
 					<a href="#" data-bs-toggle="dropdown" class="text-decoration-none text-dark"><i class="far fa-folder fa-fw text-dark text-opacity-50 me-1"></i> project/sprint-2 <b class="caret"></b></a>
@@ -240,18 +242,18 @@
 				<div class="ms-md-4 mt-md-0 mt-2"><i class="far fa-clock fa-fw me-1 text-dark text-opacity-50"></i> 14 day(s)</div>
 			</div>
 
-			<?php if (isset($_SESSION['message'])): ?>
+			<?php if (isset($_SESSION['message'])) : ?>
 				<div class="alert alert-green alert-dismissible fade show">
-				<strong>Success!</strong>
-					<?php 
-						echo $_SESSION['message']; 
-						unset($_SESSION['message']);
+					<strong>Success!</strong>
+					<?php
+					echo $_SESSION['message'];
+					unset($_SESSION['message']);
 					?>
 					<button type="button" class="btn-close" data-bs-dismiss="alert"></span>
 				</div>
 			<?php endif ?>
 			<div class="row">
-					
+
 				<div class="col-xl-4 col-lg-6">
 					<div class="panel panel-inverse">
 						<div class="panel-heading">
@@ -263,11 +265,12 @@
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-danger" data-toggle="panel-remove"><i class="fa fa-times"></i></a>
 							</div>
 						</div>
-						<div class="list-group list-group-flush rounded-bottom overflow-hidden panel-body p-0" id="to-do-tasks">
+						<div class="list-group list-group-flush rounded-bottom overflow-hidden panel-body  p-0" id="to-do-tasks">
 							<!-- TO DO TASKS HERE -->
 							<?php
-								//PHP CODE HERE
-								//DATA FROM getTasks() FUNCTION
+							//PHP CODE HERE
+							getTasks(2);
+							//DATA FROM getTasks() FUNCTION
 							?>
 						</div>
 					</div>
@@ -286,8 +289,9 @@
 						<div class="list-group list-group-flush rounded-bottom overflow-hidden panel-body p-0" id="in-progress-tasks">
 							<!-- IN PROGRESS TASKS HERE -->
 							<?php
-								//PHP CODE HERE
-								//DATA FROM getTasks() FUNCTION
+							//PHP CODE HERE
+							getTasks(1);
+							//DATA FROM getTasks() FUNCTION
 							?>
 						</div>
 					</div>
@@ -306,8 +310,9 @@
 						<div class="list-group list-group-flush rounded-bottom overflow-hidden panel-body p-0" id="done-tasks">
 							<!-- DONE TASKS HERE -->
 							<?php
-								//PHP CODE HERE
-								//DATA FROM getTasks() FUNCTION
+							//PHP CODE HERE
+							getTasks(3);
+							//DATA FROM getTasks() FUNCTION
 							?>
 						</div>
 					</div>
@@ -315,14 +320,14 @@
 			</div>
 		</div>
 		<!-- END #content -->
-		
-		
+
+
 		<!-- BEGIN scroll-top-btn -->
 		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top" data-toggle="scroll-to-top"><i class="fa fa-angle-up"></i></a>
 		<!-- END scroll-top-btn -->
 	</div>
 	<!-- END #app -->
-	
+
 	<!-- TASK MODAL -->
 	<div class="modal fade" id="modal-task">
 		<div class="modal-dialog">
@@ -333,66 +338,65 @@
 						<a href="#" class="btn-close" data-bs-dismiss="modal"></a>
 					</div>
 					<div class="modal-body">
-							<!-- This Input Allows Storing Task Index  -->
-							<input type="hidden" id="task-id">
-							<div class="mb-3">
-								<label class="form-label">Title</label>
-								<input type="text" class="form-control" id="task-title"/>
-							</div>
-							<div class="mb-3">
-								<label class="form-label">Type</label>
-								<div class="ms-3">
-									<div class="form-check mb-1">
-										<input class="form-check-input" name="task-type" type="radio" value="Feature" id="task-type-feature"/>
-										<label class="form-check-label" for="task-type-feature">Feature</label>
-									</div>
-									<div class="form-check">
-										<input class="form-check-input" name="task-type" type="radio" value="Bug" id="task-type-bug"/>
-										<label class="form-check-label" for="task-type-bug">Bug</label>
-									</div>
+						<!-- This Input Allows Storing Task Index  -->
+						<input type="hidden" name="name-task-id" id="task-id">
+						<div class="mb-3">
+							<label class="form-label">Title</label>
+							<input type="text" class="form-control" name="title" id="task-title" />
+						</div>
+						<div class="mb-3">
+							<label class="form-label">Type</label>
+							<div class="ms-3">
+								<div class="form-check mb-1">
+									<input class="form-check-input" name="task-type" type="radio" value="1" id="task-type-feature" />
+									<label class="form-check-label" for="task-type-feature">Feature</label>
 								</div>
-								
+								<div class="form-check">
+									<input class="form-check-input" name="task-type" type="radio" value="2" id="task-type-bug" />
+									<label class="form-check-label" for="task-type-bug">Bug</label>
+								</div>
 							</div>
-							<div class="mb-3">
-								<label class="form-label">Priority</label>
-								<select class="form-select" id="task-priority">
-									<option value="">Please select</option>
-									<option value="Low">Low</option>
-									<option value="Medium">Medium</option>
-									<option value="High">High</option>
-									<option value="Critical">Critical</option>
-								</select>
-							</div>
-							<div class="mb-3">
-								<label class="form-label">Status</label>
-								<select class="form-select" id="task-status">
-									<option value="">Please select</option>
-									<option value="To Do">To Do</option>
-									<option value="In Progress">In Progress</option>
-									<option value="Done">Done</option>
-								</select>
-							</div>
-							<div class="mb-3">
-								<label class="form-label">Date</label>
-								<input type="date" class="form-control" id="task-date"/>
-							</div>
-							<div class="mb-0">
-								<label class="form-label">Description</label>
-								<textarea class="form-control" rows="10" id="task-description"></textarea>
-							</div>
-						
+
+						</div>
+						<div class="mb-3">
+							<label class="form-label">Priority</label>
+							<select name="priorities" class="form-select" id="task-priority">
+								<option value="">Please select</option>
+								<option value="1">Low</option>
+								<option value="2">Medium</option>
+								<option value="3">High</option>
+								<option value="4">Critical</option>
+							</select>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">Status</label>
+							<select name="status" class="form-select" id="task-status">
+								<option value="">Please select</option>
+								<option value="2">To Do</option>
+								<option value="1">In Progress</option>
+								<option value="3">Done</option>
+							</select>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">Date</label>
+							<input name="date" type="date" class="form-control" id="task-date" />
+						</div>
+						<div class="mb-0">
+							<label class="form-label">Description</label>
+							<textarea name="Description" class="form-control" rows="10" id="task-description"></textarea>
+						</div>
 					</div>
 					<div class="modal-footer">
 						<a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
 						<button type="submit" name="delete" class="btn btn-danger task-action-btn" id="task-delete-btn">Delete</a>
-						<button type="submit" name="update" class="btn btn-warning task-action-btn" id="task-update-btn">Update</a>
-						<button type="submit" name="save" class="btn btn-primary task-action-btn" id="task-save-btn">Save</button>
+							<button type="submit" name="update" class="btn btn-warning task-action-btn" id="task-update-btn">Update</a>
+								<button type="submit" name="save" class="btn btn-primary task-action-btn" id="task-save-btn">Save</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- ================== BEGIN core-js ================== -->
 	<script src="assets/js/vendor.min.js"></script>
 	<script src="assets/js/app.min.js"></script>
@@ -403,4 +407,5 @@
 		//reloadTasks();
 	</script>
 </body>
+
 </html>
