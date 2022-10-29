@@ -1,5 +1,4 @@
 function fillMyForm(id) {
-  document.getElementById("task-id").value = id;
 
   // getting data trought attribut
   let title = document.getElementById(id + "hello").getAttribute("data-btn");
@@ -25,4 +24,9 @@ function fillMyForm(id) {
   document.getElementById("task-description").value = description;
   document.getElementById("task-status").value = statius;
   document.getElementById("task-priority").value = priority;
+}
+
+function emptyMyForm()
+{
+      document.getElementById("form-task").reset();
 }
