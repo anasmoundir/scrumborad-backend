@@ -339,7 +339,7 @@ include('scripts.php');
 					</div>
 					<div class="modal-body">
 						<!-- This Input Allows Storing Task Index  -->
-						<input type="hidden" name="name-task-id" id="task-id">
+						<input type="hidden" name="name-task-id" id="task-id" value="">
 						<div class="mb-3">
 							<label class="form-label">Title</label>
 							<input type="text" class="form-control" name="title" id="task-title" />
@@ -361,7 +361,7 @@ include('scripts.php');
 						<div class="mb-3">
 							<label class="form-label">Priority</label>
 							<select name="priorities" class="form-select" id="task-priority">
-								<option value="">Please select</option>
+								<option selected disabled value="">Please select</option>
 								<option value="1">Low</option>
 								<option value="2">Medium</option>
 								<option value="3">High</option>
@@ -371,7 +371,7 @@ include('scripts.php');
 						<div class="mb-3">
 							<label class="form-label">Status</label>
 							<select name="status" class="form-select" id="task-status">
-								<option value="">Please select</option>
+								<option selected disabled value="">Please select</option>
 								<option value="2">To Do</option>
 								<option value="1">In Progress</option>
 								<option value="3">Done</option>

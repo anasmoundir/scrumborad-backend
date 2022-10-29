@@ -91,8 +91,8 @@ function updateTask()
     $date = $_POST['date'];
     $description = $_POST['Description'];
     $sqli = "UPDATE `tasks` 
-    SET `title`=$title,`type_id`=$type,`priority_id`=$priorities ,`status_id`=$status,`task_datetime`=$date,`description`=$description 
-     WHERE  tasks.taskID = $id";
+    SET title = '$title', type_id='$type',priority_id ='$priorities' ,status_id= '$status', task_datetime ='$date', description = '$description' 
+     WHERE  taskID = $id";
     mysqli_query($conn, $sqli);
 
     //SQL UPDATE
@@ -103,6 +103,10 @@ function updateTask()
 function deleteTask()
 {
     //CODE HERE
+    global $conn;
+    $id = $_POST['name-task-id'];
+    $sqli_delete = "DELETE FROM `tasks` WHERE taskID = $id";
+    mysqli_query($conn, $sqli_delete);
     //SQL DELETE
     $_SESSION['message'] = "Task has been deleted successfully !";
     header('location: index.php');
