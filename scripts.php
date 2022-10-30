@@ -40,11 +40,18 @@ function getTasks($var)
             $priority = $priority_id["name"];
         }
         $status = $row["status_id"];
+        if ($status == 1) {
+            $iconStr = 'bi bi-hourglass-split fs-3 text-success';
+          } else if ($status == 2) {
+            $iconStr = 'bi bi-question-circle fs-3 text-success';
+          } else if ($status == 3) {
+            $iconStr = 'bi bi-check-circle-fill fs-3 text-success';
+          }
         $date = $row["task_datetime"];
         $description = $row["description"];
         echo "<button id='btn'  href='#modal-task' data-bs-toggle='modal'  class=' p-2 w-100 d-flex border-0  bg-white md border-bottom' onclick='fillMyForm({$id})'>
                 <div class='px-3'>
-                <i class='fa-solid fa-circle-check'></i>
+                <i class='{$iconStr}' id='icone'></i>
                 </div>
                 <div class='text-start'>
                     <div data-stat='{$status}' id ='{$id}status'></div>
