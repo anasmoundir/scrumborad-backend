@@ -1,6 +1,8 @@
 function fillMyForm(id) {
+  console.log(id);
 
   // getting data trought attribut
+  document.getElementById("task-id").value = id;
   let title = document.getElementById(id + "hello").getAttribute("data-btn");
   theDate = document.getElementById(id + "date").getAttribute("data-btn");
   description = document.getElementById(id + "description").getAttribute("data-description");
@@ -13,10 +15,10 @@ function fillMyForm(id) {
     document.getElementById("task-type-bug").checked = true;
   }
 
-//   //testing
-//   console.log(type);
-//   console.log(priority);
-//   console.log(statius);
+  //   //testing
+  //   console.log(type);
+  //   console.log(priority);
+  //   console.log(statius);
 
   //fill the form
   document.getElementById("task-date").value = theDate;
@@ -26,7 +28,6 @@ function fillMyForm(id) {
   document.getElementById("task-priority").value = priority;
 }
 
-function emptyMyForm()
-{
-      document.getElementById("form-task").reset();
+function emptyMyForm() {
+  document.getElementById("form-task").reset();
 }
