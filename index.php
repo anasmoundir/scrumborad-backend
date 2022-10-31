@@ -1,5 +1,17 @@
 <?php
 include('scripts.php');
+
+if($_SERVER["REQUEST_METHOD"]== "POST")
+{
+if(empty($_POST['task-title']))
+{
+$title_error = "please enter the title";
+}
+else if(empty($_POST['Description']))
+{
+$title_error = "please enter the description";
+}
+}
 ?>
 
 <!DOCTYPE html>
@@ -367,6 +379,7 @@ include('scripts.php');
 						<div class="mb-3">
 							<label class="form-label">Title</label>
 							<input type="text" class="form-control" name="title" id="task-title" />
+							<span><?php if(isset($title_error)) echo $title_error;    ?></span>
 						</div>
 						<div class="mb-3">
 							<label class="form-label">Type</label>
@@ -384,7 +397,7 @@ include('scripts.php');
 						</div>
 						<div class="mb-3">
 							<label class="form-label">Priority</label>
-							<select name="priorities" class="form-select" id="task-priority">
+							<select name="priorities" class="form-select" id="task-priority" required>
 								<option selected disabled value="">Please select</option>
 								<option value="1">Low</option>
 								<option value="2">Medium</option>
@@ -394,7 +407,7 @@ include('scripts.php');
 						</div>
 						<div class="mb-3">
 							<label class="form-label">Status</label>
-							<select name="status" class="form-select" id="task-status">
+							<select name="status" class="form-select" id="task-status" required>
 								<option selected disabled value="">Please select</option>
 								<option value="2">To Do</option>
 								<option value="1">In Progress</option>
@@ -407,7 +420,7 @@ include('scripts.php');
 						</div>
 						<div class="mb-0">
 							<label class="form-label">Description</label>
-							<textarea name="Description" class="form-control" rows="10" id="task-description"></textarea>
+							<textarea name="Description" class="form-control" rows="10" id="task-description" required></textarea>
 						</div>
 					</div>
 					<div class="modal-footer">

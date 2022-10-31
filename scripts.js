@@ -15,11 +15,6 @@ function fillMyForm(id) {
     document.getElementById("task-type-bug").checked = true;
   }
 
-  //   //testing
-  //   console.log(type);
-  //   console.log(priority);
-  //   console.log(statius);
-
   //fill the form
   document.getElementById("task-date").value = theDate;
   document.getElementById("task-title").value = title;

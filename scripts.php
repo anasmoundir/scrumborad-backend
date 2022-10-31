@@ -1,15 +1,30 @@
 <?php
 //INCLUDE DATABASE FILE
 include('database.php');
-
 //SESSSION IS A WAY TO STORE DATA TO BE USED ACROSS MULTIPLE PAGES
 session_start();
+
 
 //ROUTING
 if (isset($_POST['save']))        saveTask();
 if (isset($_POST['update']))      updateTask();
 if (isset($_POST['delete']))      deleteTask();
 
+$vtitle = $vdescription = "";
+if($_SERVER["SERVER_METHOD"] == "POST")
+    {
+        $vtitle = validationFunction($_POST["title"]);
+        $vdescription = validationFunction($_POST["Description"]);
+    }
+function validationFunction($data)
+{
+    $data = trim($data);
+    $data = htmlspecialchars($data);
+    if(empty($data))
+    {
+        exit("the input is incorrect");
+    }
+}
 
 function getTasks($var)
 {
