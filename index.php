@@ -1,17 +1,5 @@
 <?php
 include('scripts.php');
-
-if($_SERVER["REQUEST_METHOD"]== "POST")
-{
-if(empty($_POST['task-title']))
-{
-$title_error = "please enter the title";
-}
-else if(empty($_POST['Description']))
-{
-$title_error = "please enter the description";
-}
-}
 ?>
 
 <!DOCTYPE html>
@@ -166,7 +154,7 @@ $title_error = "please enter the description";
 							<div class="menu-profile-info">
 								<div class="d-flex align-items-center">
 									<div class="flex-grow-1">
-										Jilali Smith
+										persone
 									</div>
 									<div class="menu-caret ms-auto"></div>
 								</div>
@@ -255,12 +243,12 @@ $title_error = "please enter the description";
 				<div class="ms-md-4 mt-md-0 mt-2"><i class="far fa-clock fa-fw me-1 text-dark text-opacity-50"></i> 14 day(s)</div>
 			</div>
 
-			<?php if (isset($_SESSION['message'])) : ?>
-				<div class="alert alert-green alert-dismissible fade show">
-					<strong>Success!</strong>
+			<?php if (isset($_SESSION['message']['text'])) : ?>
+				<div class="alert alert-<?php echo $_SESSION['message']['color']?> alert-dismissible fade show">
+					<strong><?php echo $_SESSION['message']['text']?>!</strong>
 					<?php
-					echo $_SESSION['message'];
-					unset($_SESSION['message']);
+					unset($_SESSION['message']['color']);
+					unset($_SESSION['message']['text']);
 					?>
 					<button type="button" class="btn-close" data-bs-dismiss="alert"></span>
 				</div>
@@ -378,8 +366,7 @@ $title_error = "please enter the description";
 						<input type="hidden" name="name-task-id" id="task-id" value="">
 						<div class="mb-3">
 							<label class="form-label">Title</label>
-							<input type="text" class="form-control" name="title" id="task-title" />
-							<span><?php if(isset($title_error)) echo $title_error;    ?></span>
+							<input type="text" class="form-control" name="title" id="task-title"  />
 						</div>
 						<div class="mb-3">
 							<label class="form-label">Type</label>
@@ -397,7 +384,7 @@ $title_error = "please enter the description";
 						</div>
 						<div class="mb-3">
 							<label class="form-label">Priority</label>
-							<select name="priorities" class="form-select" id="task-priority" required>
+							<select name="priorities" class="form-select" id="task-priority">
 								<option selected disabled value="">Please select</option>
 								<option value="1">Low</option>
 								<option value="2">Medium</option>
@@ -407,7 +394,7 @@ $title_error = "please enter the description";
 						</div>
 						<div class="mb-3">
 							<label class="form-label">Status</label>
-							<select name="status" class="form-select" id="task-status" required>
+							<select name="status" class="form-select" id="task-status">
 								<option selected disabled value="">Please select</option>
 								<option value="2">To Do</option>
 								<option value="1">In Progress</option>
@@ -420,7 +407,7 @@ $title_error = "please enter the description";
 						</div>
 						<div class="mb-0">
 							<label class="form-label">Description</label>
-							<textarea name="Description" class="form-control" rows="10" id="task-description" required></textarea>
+							<textarea name="Description" class="form-control" rows="10" id="task-description"></textarea>
 						</div>
 					</div>
 					<div class="modal-footer">

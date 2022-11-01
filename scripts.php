@@ -1,30 +1,32 @@
 <?php
 //INCLUDE DATABASE FILE
 include('database.php');
+
+
 //SESSSION IS A WAY TO STORE DATA TO BE USED ACROSS MULTIPLE PAGES
 session_start();
-
 
 //ROUTING
 if (isset($_POST['save']))        saveTask();
 if (isset($_POST['update']))      updateTask();
 if (isset($_POST['delete']))      deleteTask();
 
-$vtitle = $vdescription = "";
-if($_SERVER["SERVER_METHOD"] == "POST")
-    {
-        $vtitle = validationFunction($_POST["title"]);
-        $vdescription = validationFunction($_POST["Description"]);
-    }
-function validationFunction($data)
-{
-    $data = trim($data);
-    $data = htmlspecialchars($data);
-    if(empty($data))
-    {
-        exit("the input is incorrect");
-    }
-}
+// $array = array(
+//     'color' => 'green',
+//      'text' => 'wow'
+//         );
+
+//         if(isset($_SESSION['message']))
+//         {
+//             $array = array(
+//                 'color' => 'green',
+//                  'text' => 'wow'
+//                     );
+//                     $_SESSION['message'] = $array; 
+
+//         }
+      
+    
 
 function getTasks($var)
 {
@@ -85,9 +87,12 @@ function getTasks($var)
 }
 
 
+
 function saveTask()
 {
     global $conn;
+    if(check($_POST['title']) == true || check($_POST['Description']) == true)
+    {
     $title = $_POST['title'];
     $type = $_POST['task-type'];
     $priorities = $_POST['priorities'];
@@ -96,12 +101,36 @@ function saveTask()
     $description = $_POST['Description'];
     $sql = "INSERT INTO `tasks`(`title`, `type_id`, `priority_id`, `status_id`, `task_datetime`, `description`) VALUES ('$title',' $type','$priorities','$status','$date','$description')";
     mysqli_query($conn, $sql);
+    $_SESSION['message'] ['text']= "Task has been added successfully !";
+     $_SESSION['message']['color'] = "green";
+    }
+    else
+    {
+        $_SESSION['message']['text'] = "please fill the form!";
+        $_SESSION['message']['color'] = "red";
+    }
+
+    
+
     //SQL INSERT
-    $_SESSION['message'] = "Task has been added successfully !";
+   
     header('location: index.php');
+
 }
 
-function updateTask()
+
+function check($data)
+{
+    if(preg_match('/.{1,}/',$data))
+    {   
+        return true;
+    }
+    else
+    return false;
+}
+  
+
+    function updateTask()
 {
     //CODE HERE
     global $conn;
@@ -118,7 +147,8 @@ function updateTask()
     mysqli_query($conn, $sqli);
 
     //SQL UPDATE
-    $_SESSION['message'] = "Task has been updated successfully !";
+    $_SESSION['message']['text'] = "Task has been updated successfully !";
+    $_SESSION['message']['color'] = "blue";
     header('location: index.php');
 }
 
@@ -130,6 +160,8 @@ function deleteTask()
     $sqli_delete = "DELETE FROM `tasks` WHERE taskID = '$id'";
     mysqli_query($conn, $sqli_delete);
     //SQL DELETE
-    $_SESSION['message'] = "Task has been deleted successfully !";
+    $_SESSION['message']['text'] = "Task has been deleted successfully !";
+    $_SESSION['message']['color'] = "red";
     header('location: index.php');
 }
+
