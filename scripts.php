@@ -107,7 +107,7 @@ function saveTask()
     else
     {
         $_SESSION['message']['text'] = "please fill the form!";
-        $_SESSION['message']['color'] = "red";
+        $_SESSION['message']['color'] = "purple";
     }
 
     
